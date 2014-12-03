@@ -1,0 +1,11 @@
+[alias]
+	co = checkout
+	st = stash
+	unstash = stash pop
+[branch]
+	autosetuprebase = always
+[push]
+	default = simple
+[user]
+	name = Aleksandr Bogdanov
+	email = syn@syn.im
