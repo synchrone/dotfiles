@@ -113,7 +113,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. ~/dotfiles/.git_ps1
+. ~/.git_ps1
 alias homegit="GIT_DIR=~/dotfiles/.git GIT_WORK_TREE=~ git"
 
 PATH=$PATH:~/bin:~/.composer/vendor/bin
