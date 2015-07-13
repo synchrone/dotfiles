@@ -117,3 +117,5 @@ fi
 alias homegit="GIT_DIR=~/dotfiles/.git GIT_WORK_TREE=~ git"
 
 PATH=$PATH:~/bin:~/.composer/vendor/bin
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
