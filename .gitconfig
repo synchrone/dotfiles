@@ -2,6 +2,14 @@
 	co = checkout
 	st = stash
 	unstash = stash pop
+	stat = status -sb
+	ka = !"gitk --all&"
+	showtag = !sh -c 'git rev-parse $1 | xargs git cat-file -p' -
+	k = !"gitk &"
+	changes = "!f() { git log --pretty=format:\"* %s\" $1..$2; }; f"
+	lg = log --graph --abrev-commit --date=relative
+	details = log -n1 -p --format=fuller
+
 [branch]
 	autosetuprebase = always
 [push]
@@ -9,3 +17,10 @@
 [user]
 	name = Aleksandr Bogdanov
 	email = syn@syn.im
+[color]
+	ui = auto
+[rerere]
+	enabled = true
+[jira]
+[format]
+	pretty = %Cred%h%Creset %aN -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset
