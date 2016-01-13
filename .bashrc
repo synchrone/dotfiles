@@ -114,8 +114,5 @@ if ! shopt -oq posix; then
 fi
 
 . ~/.git_ps1
-alias homegit="GIT_DIR=~/dotfiles/.git GIT_WORK_TREE=~ git"
 
-PATH=$PATH:~/bin:~/.composer/vendor/bin
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/bin:$HOME/.rvm/bin:$HOME/.composer/vendor/bin"
