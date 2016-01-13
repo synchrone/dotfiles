@@ -14,8 +14,18 @@ sudo add-apt-repository --yes ppa:webupd8team/java
 apt-get update
 apt-get install git git-gui vim guake traceroute chromium-browser redshift-gtk network-manager-openvpn-gnome owncloud-client oracle-java8-installer keepass2 autojump clipit
 
+#keepasshttp dependencies
+sudo apt-get install mono-mcs libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil
+
 #ocshot dependencies
 sudo apt-get install scrot curl libxml2-utils xclip
 
 mkdir -p /opt/jetbrains
 chown -R $MYNAME:$MYNAME /opt/jetbrains
+
+
+
+#touchscreen thinks all pan is one huge touch screen
+#xsetwacom set "ELAN Touchscreen" MapToOutput eDP1
+xinput map-to-output "ELAN Touchscreen" "eDP1"
+
