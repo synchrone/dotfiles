@@ -1,1 +1,44 @@
-../code/ocshot/ocshot.sh
+#!/bin/bash
+#############################################
+# sudo apt-get install scrot curl libxml2-utils
+#############################################
+. ~/.ocshotrc
+SCREENSHOT_URL=$BASEURL/remote.php/webdav/$SCREENSHOT_DIR
+
+if [ "$1" == '' ]; then
+	notify-send -u normal -i info --expire-time 1000 "ownCloud Screenshot" "Select the area now"
+	TMPPATH=/tmp/wdsshot.png
+	scrot -z -s -b $TMPPATH #taking a shot
+else
+	TMPPATH=$1
+fi
+
+HASH=$(sha1sum $TMPPATH | cut -d ' ' -f1)
+
+echo Creating dir... #creating a dir @ webdav
+MKDIR_CODE=$(curl -u "$USER:$PASSWORD" -s -o /dev/null -I -w "%{http_code}" -X MKCOL $SCREENSHOT_URL)
+if [ "$MKDIR_CODE" != "201" ] && [ "$MKDIR_CODE" != "405" ]; then 
+	exit "Cannot create $SCREENSHOT_URL: HTTP status $MKDIR_CODE"
+fi
+
+echo Uploading a file... # uploading a file
+UPLOAD_CODE=$(curl -u "$USER:$PASSWORD" -s -o /dev/null -I -w "%{http_code}" -T $TMPPATH $SCREENSHOT_URL/$HASH.png)
+if [ "$UPLOAD_CODE" != "201" ] && [ "$UPLOAD_CODE" != "204" ]; then
+        exit "Cannot upload $SCREENSHOT_URL/$HASH.png: HTTP status $UPLOAD_CODE"
+fi
+
+echo Sharing...  #sharing using owncloud api
+SHARE_RESPONSE=$(curl -u "$USER:$PASSWORD" -s \
+    -X POST --data "path=$SCREENSHOT_DIR/$HASH.png&shareType=3" $BASEURL/ocs/v1.php/apps/files_sharing/api/v1/shares)
+URL=$(echo $SHARE_RESPONSE | xmllint --xpath '//url/text()' - | python -c "import sys, HTMLParser; \
+    print HTMLParser.HTMLParser().unescape(sys.stdin.readline())")
+if [ "${URL:0:4}" != "http" ]; then
+    exit "Cannot share the screenshot: $SHARE_RESPONSE"
+fi
+
+echo $URL | $CLIPBOARD
+if [ "$OPEN_URL" == "true" ]; then
+	xdg-open $URL 2>&1 > /dev/null
+else
+	notify-send -u normal -i info "ownCloud Screenshot" "The URL has been copied to the clipboard"
+fi

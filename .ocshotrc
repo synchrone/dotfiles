@@ -1,0 +1,7 @@
+BASEURL=https://owncloud.host
+USER=
+PASSWORD=
+SCREENSHOT_DIR=Screenshots
+OPEN_URL='true' #otherwise just display the notification
+CLIPBOARD="xsel --clipboard" #somehow xclip does not work on xubuntu
+#CLIPBOARD="xclip -in"

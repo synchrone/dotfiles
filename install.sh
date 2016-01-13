@@ -12,7 +12,10 @@ echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/xUbun
 sudo add-apt-repository --yes ppa:webupd8team/java
 
 apt-get update
-apt-get install git git-gui vim guake traceroute chromium-browser redshift-gtk network-manager-openvpn-gnome owncloud-client oracle-java8-installer keepass2 autojump
+apt-get install git git-gui vim guake traceroute chromium-browser redshift-gtk network-manager-openvpn-gnome owncloud-client oracle-java8-installer keepass2 autojump clipit
+
+#ocshot dependencies
+sudo apt-get install scrot curl libxml2-utils xclip
 
 mkdir -p /opt/jetbrains
 chown -R $MYNAME:$MYNAME /opt/jetbrains
