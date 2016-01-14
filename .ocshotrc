@@ -5,3 +5,4 @@ SCREENSHOT_DIR=Screenshots
 OPEN_URL='true' #otherwise just display the notification
 CLIPBOARD="xsel --clipboard" #somehow xclip does not work on xubuntu
 #CLIPBOARD="xclip -in"
+OPEN_RAW=true #uncomment to use raw links, not scaled-down ownCloud html page

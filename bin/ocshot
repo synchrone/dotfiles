@@ -30,8 +30,18 @@ fi
 echo Sharing...  #sharing using owncloud api
 SHARE_RESPONSE=$(curl -u "$USER:$PASSWORD" -s \
     -X POST --data "path=$SCREENSHOT_DIR/$HASH.png&shareType=3" $BASEURL/ocs/v1.php/apps/files_sharing/api/v1/shares)
-URL=$(echo $SHARE_RESPONSE | xmllint --xpath '//url/text()' - | python -c "import sys, HTMLParser; \
-    print HTMLParser.HTMLParser().unescape(sys.stdin.readline())")
+
+if [ "$OPEN_RAW" == "true" ]; then
+  TOKEN=$(echo $SHARE_RESPONSE | xmllint --xpath '//token/text()' -)
+  if [ "$TOKEN" == '' ]; then 
+    exit "Cannot retrieve token from $SHARE_RESPONSE"; 
+  fi
+  URL="$BASEURL/index.php/apps/files_sharing/publicpreview?y=1920&x=1080&a=true&scalingup=0&t=$TOKEN"
+else
+  URL=$(echo $SHARE_RESPONSE | xmllint --xpath '//url/text()' - | python -c "import sys, HTMLParser; \
+      print HTMLParser.HTMLParser().unescape(sys.stdin.readline())")
+fi
+
 if [ "${URL:0:4}" != "http" ]; then
     exit "Cannot share the screenshot: $SHARE_RESPONSE"
 fi
