@@ -114,5 +114,6 @@ if ! shopt -oq posix; then
 fi
 
 . ~/.git_ps1
+. /usr/share/autojump/autojump.sh
 
 export PATH="$PATH:$HOME/bin:$HOME/.rvm/bin:$HOME/.composer/vendor/bin"

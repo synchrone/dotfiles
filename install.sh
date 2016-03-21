@@ -15,7 +15,7 @@ add-apt-repository --yes ppa:webupd8team/java
 apt-add-repository --yes ppa:dlech/keepass2-plugins
 
 apt-get update
-apt-get install git git-gui vim guake jq traceroute chromium-browser redshift-gtk network-manager-openvpn-gnome owncloud-client oracle-java8-installer keepass2 autojump clipit synaptic virtualbox pulseaudio-module-bluetooth
+apt-get install git git-gui vim guake jq traceroute chromium-browser redshift-gtk network-manager-openvpn-gnome owncloud-client oracle-java8-installer keepass2 autojump clipit synaptic virtualbox pulseaudio-module-bluetooth autojump
 
 #TODO: install vagrant
 gconftool -s /apps/guake/keybindings/global/show_hide -t string "<Super>grave"
