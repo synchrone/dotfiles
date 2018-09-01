@@ -88,6 +88,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias urlencode='python -c "import urllib;print urllib.quote(raw_input())"'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -114,6 +115,6 @@ if ! shopt -oq posix; then
 fi
 
 . ~/.git_ps1
-. /usr/share/autojump/autojump.sh
 
 export PATH="$PATH:$HOME/bin:$HOME/.rvm/bin:$HOME/.composer/vendor/bin"
+alias yaml2json='python3 -c "import yaml;import sys;import json;print(json.dumps(yaml.load(sys.stdin.read())))"'
