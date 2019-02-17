@@ -7,6 +7,7 @@ echo "$(whoami) ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/me
 adduser $(whoami) dialout
 newgrp dialout
 
+apt-get install curl
 echo "deb http://packages.cloud.google.com/apt cloud-sdk-$(lsb_release -c -s) main" > /etc/apt/sources.list.d/google-cloud-sdk.list
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
