@@ -89,6 +89,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias urlencode='python -c "import urllib;print urllib.quote(raw_input())"'
+alias dc='docker-compose'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
